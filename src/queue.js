@@ -4,34 +4,49 @@ import Node from '../src/node'
 
 export default class Stack {
   constructor(){
-      this.marker = 1
-      this.newMarker = 1
-      this.container = []
+      this.oldestIndex = 1
+      this.newestIndex = 1
+      this.container = {}
   }
 
   enqueue(input){
-    this.container[this.newMarker] = input
-    this.newMarker++
-    return this.newMarker
+    this.container[this.newestIndex] = input
+    this.newestIndex++
+    return this.newestIndex
   }
 
   dequeue() {
+    if ( this.oldestIndex !== this.newestIndex) {
+        let temp = container[this.oldestIndex]
+        delete this.container[this.oldestIndex]
+        this.oldestIndex++
+        return temp
+    } return null
+   }
 
-  }
 
   front() {
-
+      if ( this.oldestIndex !== this.newestIndex ) {
+          return this.container[this.marker]
+      }
+      return null
   }
 
   back() {
-
+      if ( this.oldestIndex !== this.newestIndex) {
+        return this.conatiner[this.newestIndex - 1]
+      }
+      return null
   }
 
   isEmpty() {
-
+      if ( this.oldestIndex === this.newestIndex ) {
+        return true
+      }
+      return false
   }
 
   length() {
-
+     return this.newestIndex - this.oldestIndex
   }
 }
